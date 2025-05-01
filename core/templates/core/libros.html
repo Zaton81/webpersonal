@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% block title %}
+Portada 
+{% endblock %}
+
+{%block textoscabecera%}
+<h1>Jorge Zatón</h1>
+<span class="subheading">Mis libros publicados</span>
+{% endblock %}
+
+{% block imagenportada %} {% load static %}{% static 'core/img/portadalibros.png' %} {% endblock %}
+
+
+{% block content %}
+<!-- Proyecto -->
+<div class="row project">  	
+    <div class="col-lg-3 col-md-4 offset-lg-1">
+        <img class="img-fluid" src="{% static 'core/img/quiza_lo_quiso_portada.png' %}" alt="">
+    </div>
+  <div class="col-lg-7 col-md-8">
+        <h2 class="section-heading title">Quizá lo quiso el destino</h2>   
+    <p>{{ sinopsisQuiza }}</p>
+    <div class="text-center"> <!-- Contenedor para centrar el botón -->
+        <a href="{{ comprarQuiza }}" target="_blank">
+            <button type="button" class="btn btn-success">Comprar</button>
+        </a>
+    </div>
+    </div>
+</div>
+<!-- Proyecto -->
+<div class="row project">  	
+    <div class="col-lg-3 col-md-4 offset-lg-1">
+        <img class="img-fluid" src="{% static 'core/img/Con_todo_portada.png' %}" alt="">
+    </div>
+  <div class="col-lg-7 col-md-8">
+        <h2 class="section-heading title">Con todo en contra</h2>   
+    <p>{{ sinopsisConTodo }}</p>
+    <div class="text-center"> <!-- Contenedor para centrar el botón -->
+        <a href="{{ comprarConTodo }}" target="_blank">
+            <button type="button" class="btn btn-success">Comprar</button>
+        </a>
+    </div>
+    </div>
+</div>
+{% endblock %}
+

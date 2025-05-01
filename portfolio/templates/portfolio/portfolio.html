@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Portafolio 
+{% endblock %}
+
+{%block textoscabecera%}
+<h1>Jorge Zatón</h1>
+<span class="subheading">Mi portafolio</span>
+{% endblock %}
+
+{% block imagenportada %} {% load static %}{% static 'core/img/portada.png' %} {% endblock %}
+
+{% block content %}
+{%for project in projects %} <!-- recorremoslos prejectos de la base de datos -->
+
+    <!-- Proyecto -->
+    <div class="row project">  	
+        <div class="col-lg-3 col-md-4 offset-lg-1">
+            <img class="img-fluid" src="{{project.image.url}}" alt="captura de pantalla de la app de gestión de tareas">
+        </div>
+        <div class="col-lg-7 col-md-8">
+            <h2 class="section-heading title">{{project.title}}</h2>   
+        <p>{{project.description}}</p>
+        <p><a href={{project.git_hub}} target="_blank">Repositorio en GitHub</a></p>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

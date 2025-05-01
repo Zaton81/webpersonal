@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Contacto
+{% endblock %}
+
+{%block textoscabecera%}
+<h1>Jorge Zatón</h1>
+<span class="subheading">Contacta conmigo</span>
+{% endblock %}
+
+{% block imagenportada %} {% load static %}{% static 'core/img/portadaContacto2.jpeg' %} {% endblock %}
+
+{% block content %}
+<div class="row"> 
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <p>{{ texto_contacto }}</p>
+        <br>
+        <div class="text-center"> <!-- Contenedor para centrar el botón -->
+            <a href="mailto:{{ envio_mail }}">
+                <button type="button" class="btn btn-success">Enviar correo electrónico</button>
+            </a>
+        </div>
+  </div>
+</div>
+{% endblock %}
