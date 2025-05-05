@@ -28,23 +28,25 @@
           <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item {% if request.path == '/' %}active{% endif %} px-lg-4">
                 <a class="nav-link" href="{% url 'home' %}">Portada</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {% if request.path == '/about/' %}active{% endif %} px-lg-4">
                 <a class="nav-link" href="{% url 'about' %}">Sobre mí</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {% if request.path == '/portfolio/' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'portfolio' %}">Portafolio</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {% if request.path == '/contact/' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'contact' %}">Contacto</a>
-            <li class="nav-item">
+            </li>
+            <li class="nav-item {% if request.path == '/libros/' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'libros' %}">Libros</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+            <li class="nav-item {% if request.path|slice:":6" == '/blog/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+            </li>
             </li>
           </ul>
         </div>
@@ -87,46 +89,56 @@
                       </span>
                   </a>
               </li>
-              <li class="list-inline-item">
-                  <a href="https://github.com/Zaton81" target="_blank">
-                      <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                      </span>
-                  </a>
-              </li>
-              <li class="list-inline-item">
-                  <a href="https://www.linkedin.com/in/jorge-zaton/" target="_blank">
-                      <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                      </span>
-                  </a>
-              </li>
-              <li class="list-inline-item">
-                  <a href="https://www.instagram.com/jorgezaton/" target="_blank">
-                      <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-                      </span>
-                  </a>
-              </li>
-              <li class="list-inline-item">
-                  <a href="https://twitter.com/JorgeZaton" target="_blank">
-                      <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                      </span>
-                  </a>
-              </li>
-              <li class="list-inline-item">
-                  <a href="https://www.facebook.com/zaton81" target="_blank">
-                      <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                      </span>
-                  </a>
-              </li>
+              {% if Link_GitHub %}
+                <li class="list-inline-item">
+                    <a href="{{Link_GitHub}}" target="_blank">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+              {% endif %}
+              {% if Link_linkedin %}
+                <li class="list-inline-item">
+                    <a href="{{Link_linkedin}}" target="_blank">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+              {% endif %}
+              {% if Link_Instagram %}
+                <li class="list-inline-item">
+                    <a href="{{Link_Instagram}}" target="_blank">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+              {% endif %}
+              {% if Link_twitter %}
+                <li class="list-inline-item">
+                    <a href="{{Link_twitter}}" target="_blank">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+              {% endif %}
+              {% if Link_facebook %}
+                <li class="list-inline-item">
+                    <a href="{{Link_facebook}}" target="_blank">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+              {% endif %}
           </ul>
             <p class="copyright text-muted">Copyright &copy; {% now "Y" %} · Jorge Zatón  </p>
           </div>

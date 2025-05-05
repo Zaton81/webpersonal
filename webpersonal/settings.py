@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+#aquí se registran las aplicaciones a usar. 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "core",
     "portfolio.apps.PortfolioConfig",
-    "blog"
+    "blog.apps.BlogConfig",
+    "libros.apps.LibrosConfig",
+    "social.apps.SocialConfig",
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "social.processors.ctx_dict", #añadimos el contexto para poder usarlo en los templates
             ],
         },
     },
@@ -120,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-#media files
+#media files path donde se guardan las imágenes y archivos subidos por el usuario
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

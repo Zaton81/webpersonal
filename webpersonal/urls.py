@@ -15,22 +15,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from core import views as core_views
 from portfolio import views as portfolio_views
 from blog import views as blog_views
-urlpatterns = [
-    path('', core_views.home, name='home'),
-    path('about/', core_views.about, name='about'),
-    path('contact/', core_views.contact, name='contact'),
-    path('portfolio/', portfolio_views.portfolio, name='portfolio'),
-    path('libros/', core_views.libros, name='libros'),
-    path('blog/', blog_views.blog, name="blog"),
-    path('admin/', admin.site.urls),
 
+#lista con las urls de la aplicación
+urlpatterns = [
+    path('', include('core.urls')),
+    path('portfolio/', include('portfolio.urls')),
+    path('blog/', include('blog.urls')),
+    path("libros/", include('libros.urls')),
+    path('admin/', admin.site.urls),
 ]
 
+#Con esta línea conseguimos que se vean las imágenes en el navegador cuando el modo DEBUG está activado 
 if settings.DEBUG:
     from django.conf.urls.static import static
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
