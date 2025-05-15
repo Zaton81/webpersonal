@@ -17,7 +17,16 @@ class PostsAdmin(admin.ModelAdmin):
         '''muestra las categorias en el admin de posts'''
         return ", ".join([c.name for c in obj.categories.all()])
     post_categories.short_description = 'Categorías' #nombre del campo en el admin de posts
+
+    # Inyectamos nuestro fichero css
+    class Media:
+        css = {
+            'all': ('pages/css/custom_ckeditor.css',)
+        }
+
+
 admin.site.register(Posts, PostsAdmin) #Configura el admin de Posts
+
 
 class CategoryAdmin(admin.ModelAdmin):
     '''clase CategoryAdmin para personalizar el admin de Category

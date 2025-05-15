@@ -140,7 +140,16 @@
                 </li>
               {% endif %}
           </ul>
-            <p class="copyright text-muted">Copyright &copy; {% now "Y" %} · Jorge Zatón  </p>
+            
+        </br>
+        <p class="copyright text-muted">
+          Copyright &copy; {% now "Y" %} · Jorge Zatón · 
+          {% load pagesextras %}
+          {% get_page_list as page_list %}
+          {% for page in page_list %}
+            <a href= "{% url "page" page.id %}" class=link >{{page.title}}</a> {% if not forloop.last %} · {% endif %}
+          {% endfor %}
+      </p>
           </div>
         </div>
       </div>
@@ -150,6 +159,43 @@
     <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'core/js/clean-blog.min.js' %}"></script>
+
+
+    <!-- Banner de Cookies -->
+<div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #222; color: #fff; padding: 1em; display: flex; justify-content: space-between; align-items: center; z-index: 1000;">
+  <div style="max-width: 80%;">
+    Utilizamos cookies propias y de terceros para mejorar tu experiencia. Puedes aceptar todas las cookies o configurarlas. Más info en la <a href="/politica-de-privacidad" style="color: #4ecdc4;">Política de Privacidad</a>.
+  </div>
+  <div style="display: flex; gap: 0.5em;">
+    <button onclick="acceptCookies()" style="background: #4ecdc4; color: #000; border: none; padding: 0.5em 1em; cursor: pointer;">Aceptar</button>
+    <button onclick="rejectCookies()" style="background: #fff; color: #000; border: none; padding: 0.5em 1em; cursor: pointer;">Rechazar</button>
+  </div>
+</div>
+
+<script>
+  function acceptCookies() {
+    localStorage.setItem("cookies-accepted", "true");
+    document.getElementById("cookie-banner").style.display = "none";
+    // Aquí puedes iniciar Google Analytics u otras cookies
+  }
+
+  function rejectCookies() {
+    localStorage.setItem("cookies-accepted", "false");
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+
+  // Mostrar banner solo si no se ha aceptado/rechazado aún
+  window.onload = function () {
+    const consent = localStorage.getItem("cookies-accepted");
+    if (consent !== "true" && consent !== "false") {
+      document.getElementById("cookie-banner").style.display = "flex";
+    } else {
+      document.getElementById("cookie-banner").style.display = "none";
+    }
+  };
+</script>
+  
+      <!-- Fin del banner de cookies -->
 
   </body>
 

@@ -13,7 +13,7 @@ Blog
 
 {% block content %}
 
-{%for post in category.get_posts.all %} <!-- recorremoslos posts de la base de datos -->
+{%for post in posts %} <!-- recorremoslos posts de la base de datos -->
 
     <!-- Post -->
     <section class="page-section cta">
@@ -24,19 +24,23 @@ Blog
                 <h2 class="section-heading mb-5">
                   <span class="section-heading-upper">{{post.created|date:"SHORT_DATE_FORMAT"}}</span>
                   </br>
-                  <span class="section-heading-lower">{{post.title}}</span>
+                  <span class="section-heading-lower">
+                    <a href="{% url 'post' post.id %}" class="link">{{ post.title }}</a>
+                  </span>
                 </h2>
                 <p class="mb-0">
                   <img class="mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="{{post.image.url}}" alt="">
                 </p>
                 <p class="mb-0 mbt">
-                    {{post.content|linebreaks}} <!-- Separa el contenido en lineas -->
+                    {{post.content|truncatewords:40|safe}}
+                    <a href="{% url 'post' post.id %}" class="btn btn-link">Leer más</a> <!-- Separa el contenido en lineas -->
                 </p>
                 <p class="mb-0 mbt">
                   <span class="section-heading-under">Publicado por <em><b>{{post.author}}</b></em> en <em>
                   {% for category in post.categories.all %}
                     <a href="{% url  "category" category.id %}" class="link">{{category.name}}</a>{% if not forloop.last %}, {% endif %} <!-- Si no es el último elemento, añade una coma -->
-                  {% endfor %}
+              
+                {% endfor %}
                 </em></span>
 
                 </p>
@@ -46,6 +50,8 @@ Blog
           </div>
         </div>
       </section>
+  {% empty %}
+  <p>No hay entradas en esta categoría.</p>
 {% endfor %}
 
 {% endblock %}

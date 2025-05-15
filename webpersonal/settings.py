@@ -39,10 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "core",
+    'ckeditor', #añadimos el editor de texto enriquecido
     "portfolio.apps.PortfolioConfig",
     "blog.apps.BlogConfig",
     "libros.apps.LibrosConfig",
     "social.apps.SocialConfig",
+    "pages.apps.PagesConfig",
+    "contact.apps.ContactConfig",
+    "about.apps.AboutConfig",
+    "playground.apps.PlaygroundConfig",
 ]
 
 MIDDLEWARE = [
@@ -127,7 +132,39 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+#ckeditor
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar" : None
+    }
+}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Email config estos son unos datos de prueba de mailtrap, no son reales
+# Looking to send emails in production? Check out our Email API/SMTP product!
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '8344f5d6450880'
+EMAIL_HOST_PASSWORD = '****4cf9'
+EMAIL_PORT = '2525'
+EMAIL_USE_TLS = True
+
+
+#email de prueba
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+
+#email de producción
+else:
+    #Email config estos son unos datos de prueba de mailtrap, no son reales
+    # Looking to send emails in production? Check out our Email API/SMTP product!
+    EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+    EMAIL_HOST_USER = '8344f5d6450880'
+    EMAIL_HOST_PASSWORD = '****4cf9'
+    EMAIL_PORT = '2525'
+EMAIL_USE_TLS = True

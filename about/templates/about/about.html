@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Acerca de 
+{% endblock %}
+
+{% block textoscabecera %}
+<h1>Jorge Zatón</h1>
+<span class="subheading">mi pequeña biografía</span>
+{% endblock %}
+
+{% block imagenportada %} {% load static %}{% static 'core/img/portada.png' %} {% endblock %}
+
+{% block content %}
+<section class="page-section cta">
+  <div class="container">
+    <div class="row align-items-center"> <!-- Centra verticalmente los elementos -->
+      <div class="col-lg-4 col-md-5 text-center"> <!-- Imagen centrada -->
+        <img class="img-fluid avatar rounded-circle" src="{{ about.image.url }}" alt="Imagen de {{ about.title }}">
+      </div>
+      <div class="col-lg-8 col-md-7 text-center text-md-start"> <!-- Título alineado -->
+        <h2 class="section-heading mb-4">{{ about.title }}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <div class="cta-innerv text-center rounded">
+          <p class="mb-0 mbt">
+            {{ about.content|safe }} <!-- Separa el contenido en líneas -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

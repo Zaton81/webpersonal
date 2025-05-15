@@ -7,7 +7,8 @@ class Project(models.Model):
     image = models.ImageField(upload_to='projects/', verbose_name='Imagen') #sube la imagen a la carpeta projects con la fecha de subida
     created = models.DateTimeField(auto_now_add=True, verbose_name="fecha de creación") #fecha de creación
     updated = models.DateTimeField(auto_now=True, verbose_name= "fecha de modificación") 
-    git_hub = models.URLField(null=True, blank=True, verbose_name = "Repositorio de Git Hub") #fecha de modificacion
+    git_hub = models.URLField(null=True, blank=True, verbose_name = "Repositorio de Git Hub")
+    order = models.SmallIntegerField(verbose_name = "orden", default = 0)  #fecha de modificacion
 
     def __str__(self):
         return self.title

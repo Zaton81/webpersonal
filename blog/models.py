@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=200, verbose_name='Nombre de la categoría')
@@ -17,7 +18,7 @@ class Category(models.Model):
 
 class Posts(models.Model):
     title = models.CharField(max_length=200, verbose_name='Título')
-    content = models.TextField(verbose_name='Contenido')
+    content = RichTextField(verbose_name='Contenido')
     published = models.DateTimeField(verbose_name='Fecha de publicación', default=timezone.now()) #fecha de publicación
     categories = models.ManyToManyField(Category, verbose_name='Categoría', blank=True, related_name="get_posts") #relación con el modelo Category, puede ser nulo o vací
     author = models.ForeignKey(User, verbose_name="Autor", on_delete=models.PROTECT, null=True, blank=True,) #relación con el modelo User, si se elimina el usuario se eliminan los posts
