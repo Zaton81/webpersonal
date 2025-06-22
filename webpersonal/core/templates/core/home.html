@@ -1,0 +1,20 @@
+
+
+{% extends 'core/base.html' %}
+{% block title %}
+Portada 
+{% endblock %}
+
+{%block textoscabecera%}
+<h1>Jorge Zatón</h1>
+<span class="subheading">Constructor de soluciones y contador de historias</span>
+{% endblock %}
+
+{% block imagenportada %} {% load static %}{% static 'core/img/portadaInicio.jpeg' %} {% endblock %}
+
+
+{% block content %}
+<p>Bienvenido a mi página personal {% now "Y" %}</p>
+{% endblock %}
+
+

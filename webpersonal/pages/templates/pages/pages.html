@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Blog 
+{% endblock %}
+
+{%block textoscabecera%}
+<h1>Jorge Zatón</h1>
+<span class="subheading">{{page.title}}</span>
+{% endblock %}
+
+{% block imagenportada %} {% load static %}{% static 'core/img/portadablog.png' %} {% endblock %}
+
+{% block content %}
+
+ <!-- recorremoslos posts de la base de datos -->
+
+    <!-- Post -->
+    <section class="page-section cta">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-9 mx-auto">
+              <div class="cta-innerv text-center rounded">
+                <p class="mb-0 mbt">
+                    {{page.content|safe}} <!-- Separa el contenido en lineas -->
+                </p>
+                {% if user.is_authenticated %}
+                <p><a href={% url 'admin:pages_pages_change' page.id %}> Editar</a></p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+{% endblock %}
+

@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Contacto
+{% endblock %}
+
+{%block textoscabecera%}
+<h1>Jorge Zatón</h1>
+<span class="subheading">Contacta conmigo</span>
+{% endblock %}
+
+{% block imagenportada %} {% load static %}{% static 'core/img/portadaContacto2.jpeg' %} {% endblock %}
+
+{% block content %}
+<div class="row"> 
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <p>{{ texto_contacto }}</p>
+        <br>
+        {% if "ok" in request.GET %}
+        <p><b>Gracias por tu mensaje. Te contestaré lo antes posible.</b></p>
+        {% endif %}
+        {% if "fail" in request.GET %}
+        <p><b>Lo siento, ha habido un error al enviar tu mensaje. Por favor, inténtalo de nuevo.</b></p>
+        {% endif %}
+        {% if form.errors %}
+        {% endif%}
+        <!--<form action="" method="POST">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <input type="submit" class="btn btn-primary btn-block py-2" value="Enviar" />
+        </form>>
+                <!-- Formulario de contacto -->
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Nombre *</label>
+                        <div class="input-group">
+                            {{ form.name }}
+                        </div>
+                        {{ form.name.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <div class="input-group">
+                            {{ form.email }}
+                        </div>
+                        {{ form.email.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label>Mensaje *</label>
+                        <div class="input-group">
+                            {{form.content}}
+                        </div>
+                        {{ form.content.errors }}
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary btn-block py-2" value="Enviar">
+                    </div>
+                </form>
+                <!-- Fin formulario de contacto -->
+  </div>
+</div>
+{% endblock %}
