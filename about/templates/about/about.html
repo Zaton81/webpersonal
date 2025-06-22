@@ -16,7 +16,11 @@ Acerca de
   <div class="container">
     <div class="row align-items-center"> <!-- Centra verticalmente los elementos -->
       <div class="col-lg-4 col-md-5 text-center"> <!-- Imagen centrada -->
-        <img class="img-fluid avatar rounded-circle" src="{{ about.image.url }}" alt="Imagen de {{ about.title }}">
+        {% if about.image %}
+          <img class="img-fluid avatar rounded-circle" src="{{ about.image.url }}" alt="Imagen de {{ about.title }}">
+        {% else %}
+          <img class="img-fluid" src="{% static 'core/img/avatar.jpg' %}" alt="Imagen por defecto">
+        {% endif %}
       </div>
       <div class="col-lg-8 col-md-7 text-center text-md-start"> <!-- Título alineado -->
         <h2 class="section-heading mb-4">{{ about.title }}</h2>

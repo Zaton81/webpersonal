@@ -27,7 +27,11 @@ Blog
                   </span>
                 </h2>
                 <p class="mb-0">
-                  <img class="mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="{{post.image.url}}" alt="">
+                  {% if post.image %}
+                    <img class="mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="{{post.image.url}}" alt="">
+                  {% else %}
+                    <img class="mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="{% static 'core/img/avatar.jpg' %}" alt="Imagen por defecto">
+                  {% endif %}
                 </p>
                 <p class="mb-0 mbt">
                     {{post.content|safe}} <!-- Separa el contenido en lineas -->

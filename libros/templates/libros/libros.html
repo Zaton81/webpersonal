@@ -19,7 +19,11 @@ Portada
     <!-- Proyecto -->
     <div class="row project">  	
         <div class="col-lg-3 col-md-4 offset-lg-1">
-            <img class="img-fluid" src="{{book.image.url}}" alt="captura de pantalla del libro {{book.title}}">
+            {% if book.image %}
+                <img class="img-fluid" src="{{book.image.url}}" alt="captura de pantalla del libro {{book.title}}">
+            {% else %}
+                <img class="img-fluid" src="{% static 'core/img/avatar.jpg' %}" alt="Imagen por defecto">
+            {% endif %}
         </div>
         <div class="col-lg-7 col-md-8">
             <h2 class="section-heading title">{{book.title}}</h2>   
