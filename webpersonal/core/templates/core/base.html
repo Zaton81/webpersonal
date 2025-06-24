@@ -1,3 +1,5 @@
+{% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>{% block title %}{% endblock %} | Jorge Zatón</title>
-    {% load static %}
     <!-- Estilos y fuentes del template  -->
     <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
@@ -18,6 +19,20 @@
   </head>
 
   <body>
+
+    <!-- Scripts de terceros (solo se cargan si el usuario acepta cookies) -->
+    <template id="third-party-scripts">
+      <!-- Google Analytics (ejemplo, reemplaza TU_ID_ANALYTICS por tu ID real) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=TU_ID_ANALYTICS"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'TU_ID_ANALYTICS');
+      </script>
+      <!-- Amazon Afiliados (ejemplo) -->
+      <!-- <script src="URL_DEL_SCRIPT_DE_AMAZON"></script> -->
+    </template>
 
     <!--  Barra de Navegación -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -30,22 +45,22 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item {% if request.path == '/' %}active{% endif %} px-lg-4">
-                <a class="nav-link" href="{% url 'home' %}">Portada</a>
+                <a class="nav-link" href="{% url 'home' %}">{% trans "Portada" %}</a>
             </li>
             <li class="nav-item {% if request.path == '/about/' %}active{% endif %} px-lg-4">
-                <a class="nav-link" href="{% url 'about' %}">Sobre mí</a>
+                <a class="nav-link" href="{% url 'about' %}">{% trans "Sobre mí" %}</a>
             </li>
             <li class="nav-item {% if request.path == '/portfolio/' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'portfolio' %}">Portafolio</a>
+                <a class="nav-link" href="{% url 'portfolio' %}">{% trans "Portafolio" %}</a>
             </li>
             <li class="nav-item {% if request.path == '/contact/' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'contact' %}">Contacto</a>
+                <a class="nav-link" href="{% url 'contact' %}">{% trans "Contacto" %}</a>
             </li>
             <li class="nav-item {% if request.path == '/libros/' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'libros' %}">Libros</a>
+                <a class="nav-link" href="{% url 'libros' %}">{% trans "Libros" %}</a>
             </li>
             <li class="nav-item {% if request.path|slice:":6" == '/blog/' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+                <a class="nav-link" href="{% url 'blog' %}">{% trans "Blog" %}</a>
             </li>
             </li>
           </ul>
@@ -143,7 +158,7 @@
             
         </br>
         <p class="copyright text-muted">
-          Copyright &copy; {% now "Y" %} · Jorge Zatón · 
+          {% trans "Copyright" %} &copy; {% now "Y" %} · Jorge Zatón · 
           {% load pagesextras %}
           {% get_page_list as page_list %}
           {% for page in page_list %}
@@ -164,33 +179,46 @@
     <!-- Banner de Cookies -->
 <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #222; color: #fff; padding: 1em; display: flex; justify-content: space-between; align-items: center; z-index: 1000;">
   <div style="max-width: 80%;">
-    Utilizamos cookies propias y de terceros para mejorar tu experiencia. Puedes aceptar todas las cookies o configurarlas. Más info en la <a href="/politica-de-privacidad" style="color: #4ecdc4;">Política de Privacidad</a>.
+    {% blocktrans %}Utilizamos cookies propias y de terceros para mejorar tu experiencia. Puedes aceptar todas las cookies o configurarlas. Más info en la <a href="/politica-de-privacidad" style="color: #4ecdc4;">Política de Privacidad</a>.{% endblocktrans %}
   </div>
   <div style="display: flex; gap: 0.5em;">
-    <button onclick="acceptCookies()" style="background: #4ecdc4; color: #000; border: none; padding: 0.5em 1em; cursor: pointer;">Aceptar</button>
-    <button onclick="rejectCookies()" style="background: #fff; color: #000; border: none; padding: 0.5em 1em; cursor: pointer;">Rechazar</button>
+    <button onclick="acceptCookies()" style="background: #4ecdc4; color: #000; border: none; padding: 0.5em 1em; cursor: pointer;">{% trans "Aceptar" %}</button>
+    <button onclick="rejectCookies()" style="background: #fff; color: #000; border: none; padding: 0.5em 1em; cursor: pointer;">{% trans "Rechazar" %}</button>
   </div>
 </div>
 
 <script>
+  function loadThirdPartyScripts() {
+    const template = document.getElementById('third-party-scripts');
+    if (template) {
+      document.body.insertAdjacentHTML('beforeend', template.innerHTML);
+      console.log('Scripts de terceros cargados');
+    }
+  }
+
   function acceptCookies() {
     localStorage.setItem("cookies-accepted", "true");
     document.getElementById("cookie-banner").style.display = "none";
-    // Aquí puedes iniciar Google Analytics u otras cookies
+    loadThirdPartyScripts(); // Carga los scripts cuando se aceptan las cookies
   }
 
   function rejectCookies() {
     localStorage.setItem("cookies-accepted", "false");
     document.getElementById("cookie-banner").style.display = "none";
+    // No se cargan los scripts de terceros
   }
 
-  // Mostrar banner solo si no se ha aceptado/rechazado aún
+  // Mostrar banner y cargar scripts si ya fueron aceptados
   window.onload = function () {
     const consent = localStorage.getItem("cookies-accepted");
     if (consent !== "true" && consent !== "false") {
       document.getElementById("cookie-banner").style.display = "flex";
     } else {
       document.getElementById("cookie-banner").style.display = "none";
+      // Si las cookies fueron aceptadas previamente, carga los scripts
+      if (consent === "true") {
+        loadThirdPartyScripts();
+      }
     }
   };
 </script>

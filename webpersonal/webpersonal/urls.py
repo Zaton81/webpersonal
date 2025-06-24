@@ -22,7 +22,7 @@ from portfolio import views as portfolio_views
 from blog import views as blog_views
 from contact import views as contact_views
 from about import views as about_views
-from playground import views as playground_views
+
 
 #lista con las urls de la aplicación
 urlpatterns = [
@@ -34,7 +34,6 @@ urlpatterns = [
     path('page/', include('pages.urls')),
     path('contact/', include('contact.urls')),
     path('about/', include('about.urls')),
-    path('playground/', include('playground.urls')),
 ]
 
 #Con esta línea conseguimos que se vean las imágenes en el navegador cuando el modo DEBUG está activado 

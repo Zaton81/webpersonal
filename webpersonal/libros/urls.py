@@ -1,5 +1,5 @@
-from . import views as book_views
 from django.urls import path
+from .views import LibrosView
 urlpatterns = [
-    path('', book_views.libros, name='libros'),
+    path('', LibrosView.as_view(), name='libros'),
 ]

@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Pages
+from django.views.generic.detail import DetailView
+from .models import Pages  # type: ignore[attr-defined]
 
-# Create your views here.
-def pages(request, page_id):
-    page = get_object_or_404(Pages, id=page_id)
-    return render(request, 'pages/pages.html', {'page': page})
+class PageDetailView(DetailView):
+    """Vista de detalle para mostrar una página informativa gestionada desde el admin."""
+    model = Pages
+    template_name = 'pages/pages.html'
+    context_object_name = 'page'
+    pk_url_kwarg = 'page_id'

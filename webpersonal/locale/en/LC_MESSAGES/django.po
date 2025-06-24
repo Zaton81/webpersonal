@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-24 16:44+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\webpersonal\core\templates\core\base.html:48
+msgid "Portada"
+msgstr "Home"
+
+#: .\webpersonal\core\templates\core\base.html:51
+msgid "Sobre mí"
+msgstr "About me"
+
+#: .\webpersonal\core\templates\core\base.html:54
+msgid "Portafolio"
+msgstr "Portfolio"
+
+#: .\webpersonal\core\templates\core\base.html:57
+msgid "Contacto"
+msgstr "Contact"
+
+#: .\webpersonal\core\templates\core\base.html:60
+msgid "Libros"
+msgstr "Books"
+
+#: .\webpersonal\core\templates\core\base.html:63
+msgid "Blog"
+msgstr "Blog"
+
+#: .\webpersonal\core\templates\core\base.html:161
+msgid "Copyright"
+msgstr "Copyright"
+
+#: .\webpersonal\core\templates\core\base.html:182
+msgid ""
+"Utilizamos cookies propias y de terceros para mejorar tu experiencia. Puedes "
+"aceptar todas las cookies o configurarlas. Más info en la <a href=\"/"
+"politica-de-privacidad\" style=\"color: #4ecdc4;\">Política de Privacidad</"
+"a>."
+msgstr "We use our own and third-party cookies to improve your experience. You can accept all cookies or configure them. More info in the <a href=\"/politica-de-privacidad\" style=\"color: #4ecdc4;\">Privacy Policy</a>."
+
+#: .\webpersonal\core\templates\core\base.html:185
+msgid "Aceptar"
+msgstr "Accept"
+
+#: .\webpersonal\core\templates\core\base.html:186
+msgid "Rechazar"
+msgstr "Reject"
+
+#: .\webpersonal\webpersonal\settings.py:129
+msgid "Spanish"
+msgstr "Spanish"
+
+#: .\webpersonal\webpersonal\settings.py:130
+msgid "English"
+msgstr "English"

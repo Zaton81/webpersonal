@@ -1,9 +1,8 @@
-from django.shortcuts import render, HttpResponse
+from django.views.generic.base import TemplateView
 
-
-# Create your views here.
-def home(request):
-    return render(request, "core/home.html")
+class HomeView(TemplateView):
+    """Vista para mostrar la página de inicio."""
+    template_name = "core/home.html"
 
 
                                                    

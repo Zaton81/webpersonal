@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views 
+from .views import PageDetailView
 
 urlpatterns = [
-    path('<int:page_id>/', views.pages, name="page"),
+    path('<int:page_id>/', PageDetailView.as_view(), name="page"),
 ]
