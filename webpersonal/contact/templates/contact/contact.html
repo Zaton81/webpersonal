@@ -24,7 +24,10 @@ Contacto
           {% endfor %}
         {% endif %}
         {% if form.errors %}
-        {% endif%}
+          <div class="alert alert-danger">
+            Por favor, corrige los errores indicados en el formulario.
+          </div>
+        {% endif %}
         <form action="" method="POST">
             {% csrf_token %}
             <div class="form-group">
@@ -32,21 +35,33 @@ Contacto
                 <div class="input-group">
                     {{ form.name }}
                 </div>
-                {{ form.name.errors }}
+                {% if form.name.errors %}
+                  <div class="invalid-feedback d-block">
+                    {{ form.name.errors|striptags }}
+                  </div>
+                {% endif %}
             </div>
             <div class="form-group">
                 <label>Email *</label>
                 <div class="input-group">
                     {{ form.email }}
                 </div>
-                {{ form.email.errors }}
+                {% if form.email.errors %}
+                  <div class="invalid-feedback d-block">
+                    {{ form.email.errors|striptags }}
+                  </div>
+                {% endif %}
             </div>
             <div class="form-group">
                 <label>Mensaje *</label>
                 <div class="input-group">
                     {{form.content}}
                 </div>
-                {{ form.content.errors }}
+                {% if form.content.errors %}
+                  <div class="invalid-feedback d-block">
+                    {{ form.content.errors|striptags }}
+                  </div>
+                {% endif %}
             </div>
             <div class="text-center">
                 <input type="submit" class="btn btn-primary btn-block py-2" value="Enviar">

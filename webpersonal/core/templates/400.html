@@ -1,0 +1,9 @@
+{% extends "core/base.html" %}
+{% block title %}Petición incorrecta{% endblock %}
+{% block content %}
+  <div class="text-center mt-5">
+    <h1>400 - Petición incorrecta</h1>
+    <p>La petición realizada no es válida. Por favor, revisa la URL o vuelve a intentarlo.</p>
+    <a href="{% url 'home' %}" class="btn btn-primary">Volver al inicio</a>
+  </div>
+{% endblock %} 
