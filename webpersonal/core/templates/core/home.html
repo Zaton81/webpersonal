@@ -1,5 +1,3 @@
-
-
 {% extends 'core/base.html' %}
 {% block title %}
 Portada 
@@ -12,9 +10,71 @@ Portada
 
 {% block imagenportada %} {% load static %}{% static 'core/img/portadaInicio.jpeg' %} {% endblock %}
 
-
 {% block content %}
-<p>Bienvenido a mi página personal {% now "Y" %}</p>
+<div id="mainCarousel" class="carousel slide mb-5" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#mainCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#mainCarousel" data-slide-to="1"></li>
+    <li data-target="#mainCarousel" data-slide-to="2"></li>
+    <li data-target="#mainCarousel" data-slide-to="3"></li>
+    <li data-target="#mainCarousel" data-slide-to="4"></li>
+  </ol>
+  <div class="carousel-inner">
+    <!-- Portafolio -->
+    <div class="carousel-item active">
+      <img src="{% static 'core/img/portfolio-bg.jpg' %}" class="d-block w-100 rounded carousel-img-home" alt="Portafolio">
+      <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3 mb-3">
+        <h2 class="text-center">Portafolio</h2>
+        <p class="text-center">Descubre mis proyectos destacados y colaboraciones.</p>
+        <a href="{% url 'portfolio' %}" class="btn btn-primary">Ver portafolio</a>
+      </div>
+    </div>
+    <!-- Blog -->
+    <div class="carousel-item">
+      <img src="{% static 'core/img/portadablog.png' %}" class="d-block w-100 rounded carousel-img-home" alt="Blog">
+      <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3 mb-3">
+        <h2 class="text-center">Blog</h2>
+        <p class="text-center">Reflexiones, tutoriales y experiencias sobre programación y literatura.</p>
+        <a href="{% url 'blog' %}" class="btn btn-primary">Ir al blog</a>
+      </div>
+    </div>
+    <!-- Libros -->
+    <div class="carousel-item">
+      <img src="{% static 'core/img/portadalibros.png' %}" class="d-block w-100 rounded carousel-img-home" alt="Libros">
+      <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3 mb-3">
+        <h2 class="text-center">Libros</h2>
+        <p class="text-center">Conoce mis libros publicados y accede a sus enlaces de compra.</p>
+        <a href="{% url 'libros' %}" class="btn btn-primary">Ver libros</a>
+      </div>
+    </div>
+    <!-- Contacto -->
+    <div class="carousel-item">
+      <img src="{% static 'core/img/portadaContacto2.jpeg' %}" class="d-block w-100 rounded carousel-img-home" alt="Contacto">
+      <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3 mb-3">
+        <h2 class="text-center">Contacto</h2>
+        <p class="text-center">¿Quieres proponerme un proyecto, colaborar o simplemente saludar? ¡Escríbeme!</p>
+        <a href="{% url 'contact' %}" class="btn btn-primary">Contactar</a>
+      </div>
+    </div>
+    <!-- Sobre mí -->
+    <div class="carousel-item">
+      <img src="{% static 'core/img/portadaAbout.jpeg' %}" class="d-block w-100 rounded carousel-img-home" alt="Sobre mí">
+      <div class="carousel-caption bg-dark bg-opacity-50 rounded p-3 mb-3">
+        <h2 class="text-center">Sobre mí</h2>
+        <p class="text-center">Conoce mi trayectoria, valores y motivaciones.</p>
+        <a href="{% url 'about' %}" class="btn btn-primary">Leer más</a>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#mainCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Anterior</span>
+  </a>
+  <a class="carousel-control-next" href="#mainCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Siguiente</span>
+  </a>
+</div>
 {% endblock %}
 
 

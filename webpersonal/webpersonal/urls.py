@@ -30,7 +30,7 @@ urlpatterns = [
     path('portfolio/', include('portfolio.urls')),
     path('blog/', include('blog.urls')),
     path("libros/", include('libros.urls')),
-    path('admin/', admin.site.urls),
+    path('jorge-admin-blog/', admin.site.urls),
     path('page/', include('pages.urls')),
     path('contact/', include('contact.urls')),
     path('about/', include('about.urls')),

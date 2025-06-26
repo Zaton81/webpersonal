@@ -3,6 +3,7 @@ from django.views.generic.edit import FormView
 from .forms import ContactForm
 from django.core.mail import EmailMessage
 from django.contrib import messages
+from django.conf import settings
 
 class ContactView(FormView):
     """Vista de formulario de contacto con envío de email y mensajes de éxito/error."""
@@ -22,8 +23,8 @@ class ContactView(FormView):
         email_message = EmailMessage(
             "Mensaje enviado desde la web",
             f"De {name}<{email}>\n\nEscribió:\n\n{content}",
-            "zaton81@mailtrap.io",
-            ["zaton81@mailtrap.io"],
+            settings.EMAIL_HOST_USER,
+            [settings.EMAIL_HOST_USER],
             reply_to=[email]
         )
         try:

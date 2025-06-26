@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q1ybt-bb6#pqgou!5b5h5^@%5djmsugbsd4vt$%zu2)wbq!@u#'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -154,27 +157,15 @@ CKEDITOR_CONFIGS = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Email config estos son unos datos de prueba de mailtrap, no son reales
-# Looking to send emails in production? Check out our Email API/SMTP product!
-EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
-EMAIL_HOST_USER = '8344f5d6450880'
-EMAIL_HOST_PASSWORD = '****4cf9'
-EMAIL_PORT = '2525'
+# Email config para Gmail
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 #email de prueba
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
-
-#email de producción
-else:
-    #Email config estos son unos datos de prueba de mailtrap, no son reales
-    # Looking to send emails in production? Check out our Email API/SMTP product!
-    EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
-    EMAIL_HOST_USER = '8344f5d6450880'
-    EMAIL_HOST_PASSWORD = '****4cf9'
-    EMAIL_PORT = '2525'
-EMAIL_USE_TLS = True
