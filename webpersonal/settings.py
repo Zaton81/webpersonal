@@ -166,6 +166,6 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 #email de prueba
 
-if DEBUG:
+'''if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')'''

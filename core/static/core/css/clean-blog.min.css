@@ -104,7 +104,7 @@ img::-moz-selection{
   padding-bottom: 2rem;
   padding-top: 1rem;
   transform: none;
-  background: rgba(33, 37, 41, 0.5); /* refuerza el fondo oscuro */
+  background: rgba(33, 37, 41, 0.5) !important; /* refuerza el fondo oscuro */
   border-bottom-left-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
 }

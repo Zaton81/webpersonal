@@ -190,11 +190,19 @@
 
 <script>
   function loadThirdPartyScripts() {
-    const template = document.getElementById('third-party-scripts');
-    if (template) {
-      document.body.insertAdjacentHTML('beforeend', template.innerHTML);
-      console.log('Scripts de terceros cargados');
-    }
+    // Google Analytics
+    var gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=TU_ID_ANALYTICS'; // <-- Sustituye TU_ID_ANALYTICS por tu ID real
+    document.head.appendChild(gaScript);
+
+    gaScript.onload = function() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'TU_ID_ANALYTICS'); // <-- Sustituye TU_ID_ANALYTICS por tu ID real
+    };
+    // Aquí puedes añadir otros scripts de terceros si lo necesitas
   }
 
   function acceptCookies() {
